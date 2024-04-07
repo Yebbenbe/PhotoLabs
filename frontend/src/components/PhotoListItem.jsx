@@ -12,17 +12,17 @@ const PhotoListItem = (props) => {
 
 
   return (
-    <div className="photo-list-item">
+    <div className="photo-list_item">
       {/* display the image */}
-      <img src={imageSource} alt={`Photo by ${username}`} />
+      <img className="photo-list__image" src={imageSource} alt={`Photo by ${username}`} />
 
       <div className="photographer-details">
         <div className="photographer-info">
-          <img src={profile} alt={`Profile of ${username}`} />
-          <p>{username}</p>
-        </div>
-        <p>{location.city}, {location.country}</p>
+          <img className="photo-list__user-profile" src={profile} alt={`Profile of ${username}`} />
+          <p className="photo-list__user-info">{username}</p>
+        <p className="photo-list__user-location">{location.city}, {location.country}</p>
       </div>
+    </div>
     </div>
   );
 }
