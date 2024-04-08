@@ -6,10 +6,11 @@ import "../styles/PhotoListItem.scss";
 
 
 const PhotoListItem = (props) => {
-  const { data } = props;
-  // extract data from the sample data object via destructuring
-  const { id, location, imageSource, username, profile } = data;
-
+  // updated to extract new data
+  const { id, location, urls, user } = props.data;
+  const { city, country } = location;
+  const imageSource = urls.full;
+  const { username, profile } = user;
 
   return (
     <div className="photo-list__item">
@@ -20,12 +21,10 @@ const PhotoListItem = (props) => {
           <img className="photo-list__user-profile" src={profile} alt={`Profile of ${username}`} />
           <p className="photo-list__user-info">{username}</p>
         </div>
-        <p className="photo-list__user-location">{location.city}, {location.country}</p>
-        {/* PhotoFavButton component */}
+        <p className="photo-list__user-location">{city}, {country}</p>
+
         <PhotoFavButton />
       </div>
-
-
     </div>
   );
 }
