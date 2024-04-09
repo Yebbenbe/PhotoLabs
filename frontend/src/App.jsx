@@ -6,6 +6,17 @@ import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  // liked state stuff
+  const [likedPhotos, setLikedPhotos] = useState([]);
+
+  const toggleFavorite = (photoId) => {
+    const isLiked = likedPhotos.includes(photoId);
+    if (isLiked) {
+      setLikedPhotos(likedPhotos.filter(id => id !== photoId));
+    } else {
+      setLikedPhotos([...likedPhotos, photoId]);
+    }
+  };
   // modal stuff
   const [showModal, setShowModal] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -20,11 +31,18 @@ const App = () => {
 
   return (
     <div className="App">
-       <HomeRoute openModal={openModal} closeModal={closeModal} /> {/* modal functions pass */}
-       {showModal && <PhotoDetailsModal  // if showModal is true, render PhotoDetailsModal with photoData at selected photo and the closer function
+      <HomeRoute
+        openModal={openModal}
+        closeModal={closeModal}
+        likedPhotos={likedPhotos}
+        toggleFavorite={toggleFavorite} />
+
+      {showModal && <PhotoDetailsModal  // if showModal is true, render PhotoDetailsModal with photoData at selected photo and the closer function
           photoData={selectedPhoto}
           closeModal={closeModal}
-        /> }
+          likedPhotos={likedPhotos}
+          toggleFavorite={toggleFavorite}
+      />}
     </div>
   );
 };
