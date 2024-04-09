@@ -3,7 +3,7 @@ import TopNavigationBar from '../components/TopNavigationBar';
 import PhotoList from '../components/PhotoList';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = () => {
+const HomeRoute = ({openModal}) => {
   const [likedPhotos, setLikedPhotos] = useState([]);
 
   const toggleFavorite = (photoId) => {
@@ -19,7 +19,7 @@ const HomeRoute = () => {
     <div className="home-route">
       <TopNavigationBar likedPhotos={likedPhotos} />
 
-      <PhotoList likedPhotos={likedPhotos} toggleFavorite={toggleFavorite} />
+      <PhotoList openModal={openModal} likedPhotos={likedPhotos} toggleFavorite={toggleFavorite} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = ({ data, isLiked, toggleFavorite }) => {
+const PhotoListItem = ({ data, isLiked, toggleFavorite, openModal }) => {
   const { id, location, urls, user } = data;
   const { city, country } = location;
   const imageSource = urls.full;
@@ -12,8 +12,12 @@ const PhotoListItem = ({ data, isLiked, toggleFavorite }) => {
     toggleFavorite(id);
   };
 
+  const handleClick = () => {
+    openModal();
+  };
+
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={handleClick}>
       <img className="photo-list__image" src={imageSource} alt={`Photo by ${username}`} />
 
       <div className="photographer-details">
