@@ -16,3 +16,11 @@
   padding: 7px;
   top: 2px;
 }
+
+.photo-list__fav-icon-svg svg path {
+  fill: #ffffff;
+}
+
+.photo-list__fav-icon.is-liked .photo-list__fav-icon-svg svg path {
+  fill: #C80000;
+}

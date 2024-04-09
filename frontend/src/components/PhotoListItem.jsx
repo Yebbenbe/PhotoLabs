@@ -2,15 +2,15 @@ import React from "react";
 import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
 
-
-
-
-const PhotoListItem = (props) => {
-  // updated to extract new data
-  const { id, location, urls, user } = props.data;
+const PhotoListItem = ({ data, isLiked, toggleFavorite }) => {
+  const { id, location, urls, user } = data;
   const { city, country } = location;
   const imageSource = urls.full;
   const { username, profile } = user;
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(id);
+  };
 
   return (
     <div className="photo-list__item">
@@ -23,10 +23,10 @@ const PhotoListItem = (props) => {
         </div>
         <p className="photo-list__user-location">{city}, {country}</p>
 
-        <PhotoFavButton />
+        <PhotoFavButton isLiked={isLiked} onClick={handleToggleFavorite} />
       </div>
     </div>
   );
-}
+};
 
 export default PhotoListItem;
