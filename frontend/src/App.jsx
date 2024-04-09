@@ -8,7 +8,10 @@ import './App.scss';
 const App = () => {
   // modal stuff
   const [showModal, setShowModal] = useState(false);
-  const openModal = () => {
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  // function to open modal and set selectedPhoto
+  const openModal = (photoData) => {
+    setSelectedPhoto(photoData);
     setShowModal(true);
   };
   const closeModal = () => {
@@ -17,8 +20,11 @@ const App = () => {
 
   return (
     <div className="App">
-       <HomeRoute openModal={openModal} closeModal={closeModal} /> {/* modal pass */}
-       {showModal && <PhotoDetailsModal closeModal={closeModal} />} {/* modal render */}
+       <HomeRoute openModal={openModal} closeModal={closeModal} /> {/* modal functions pass */}
+       {showModal && <PhotoDetailsModal  // if showModal is true, render PhotoDetailsModal with photoData at selected photo and the closer function
+          photoData={selectedPhoto}
+          closeModal={closeModal}
+        /> }
     </div>
   );
 };

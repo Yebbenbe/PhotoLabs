@@ -12,13 +12,18 @@ const PhotoListItem = ({ data, isLiked, toggleFavorite, openModal }) => {
     toggleFavorite(id);
   };
 
-  const handleClick = () => {
-    openModal();
+  const handleClick = (event) => {
+    event.stopPropagation();
+    if (data) {
+      openModal(data);
+    } else {
+      console.error('Data is undefined or null');
+    }
   };
 
   return (
-    <div className="photo-list__item" onClick={handleClick}>
-      <img className="photo-list__image" src={imageSource} alt={`Photo by ${username}`} />
+    <div className="photo-list__item">
+  <img className="photo-list__image" src={imageSource} alt={`Photo by ${username}`} onClick={handleClick} />
 
       <div className="photographer-details">
         <div className="photographer-info">
