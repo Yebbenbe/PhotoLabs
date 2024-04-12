@@ -3,9 +3,10 @@
   import PhotoList from '../components/PhotoList';
   import '../styles/HomeRoute.scss';
   import PhotoDetailsModal from '../routes/PhotoDetailsModal';
+  import useApplicationData from '../hooks/useApplicationData';
 
-  const HomeRoute = ({ openModal, likedPhotos, toggleFavorite }) => {
-
+  const HomeRoute = () => {
+    const { likedPhotos, toggleFavorite, openModal } = useApplicationData();
 
     return (
       <div className="home-route">
