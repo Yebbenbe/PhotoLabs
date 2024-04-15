@@ -1,10 +1,12 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
+
 
 // define action types
 export const ACTIONS = {
   TOGGLE_FAVORITE: 'TOGGLE_FAVORITE',
   OPEN_MODAL: 'OPEN_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA'
 };
 
 // reducer function
@@ -32,6 +34,8 @@ const useApplicationData = () => {
     likedPhotos: [],
     showModal: false,
     selectedPhoto: null,
+    photoData: [],
+    topicData: []
   };
 
   // use reducer with initial state
@@ -50,6 +54,21 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.CLOSE_MODAL });
   };
 
+   // effect for grabbing photo data
+   useEffect(() => {
+    fetch('/api/photos')
+      .then((response) => response.json())
+      .then((data) => {
+        // dispatch action
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+      })
+      .catch((error) => {
+        console.error('Error fetching photo data:', error);
+      });
+      // empty array so no loop
+  }, []);
+
+
   // return state and actions
   return {
     likedPhotos: state.likedPhotos,
@@ -58,6 +77,8 @@ const useApplicationData = () => {
     selectedPhoto: state.selectedPhoto,
     openModal,
     closeModal,
+    photoData: state.photoData,
+    topicData: state.topicData
   };
 };
 

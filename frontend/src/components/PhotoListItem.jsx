@@ -23,8 +23,11 @@ const PhotoListItem = ({ data, isLiked, toggleFavorite, openModal }) => {
 
   return (
     <div className="photo-list__item">
-  <img className="photo-list__image" src={imageSource} alt={`Photo by ${username}`} onClick={handleClick} />
-
+        <div className="photo-list__image-container">
+        <PhotoFavButton isLiked={isLiked} onClick={handleToggleFavorite} />
+        <img className="photo-list__image" src={imageSource} alt={`Photo by ${username}`} onClick={handleClick} />
+        
+      </div>
       <div className="photographer-details">
         <div className="photographer-info">
           <img className="photo-list__user-profile" src={profile} alt={`Profile of ${username}`} />
@@ -32,7 +35,7 @@ const PhotoListItem = ({ data, isLiked, toggleFavorite, openModal }) => {
         </div>
         <p className="photo-list__user-location">{city}, {country}</p>
 
-        <PhotoFavButton isLiked={isLiked} onClick={handleToggleFavorite} />
+       {/*} <PhotoFavButton isLiked={isLiked} onClick={handleToggleFavorite} /> */}
       </div>
     </div>
   );
