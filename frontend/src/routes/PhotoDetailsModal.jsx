@@ -4,8 +4,8 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from '../components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ photoData, closeModal, likedPhotos, toggleFavorite, openModal }) => {
-  const { id, urls, user, location } = photoData;
+const PhotoDetailsModal = ({ selectedPhotoData, closeModal, likedPhotos, toggleFavorite, openModal }) => {
+  const { id, urls, user, location } = selectedPhotoData;
   const { username, profile } = user;
   const { city, country } = location;
 

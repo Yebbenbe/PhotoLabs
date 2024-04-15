@@ -6,12 +6,12 @@
   import useApplicationData from '../hooks/useApplicationData';
 
   const HomeRoute = () => {
-    const { likedPhotos, toggleFavorite, openModal } = useApplicationData();
+    const { likedPhotos, toggleFavorite, openModal, photoData } = useApplicationData();
 
     return (
       <div className="home-route">
         <TopNavigationBar likedPhotos={likedPhotos} />
-        <PhotoList openModal={openModal} likedPhotos={likedPhotos} toggleFavorite={toggleFavorite} />
+        <PhotoList openModal={openModal} likedPhotos={likedPhotos} toggleFavorite={toggleFavorite} photoData={photoData} />
       </div>
     );
   };

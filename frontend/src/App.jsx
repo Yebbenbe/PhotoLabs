@@ -14,6 +14,7 @@ const App = () => {
     selectedPhoto,
     openModal,
     closeModal,
+    photoData
   } = useApplicationData();
 
 
@@ -24,10 +25,11 @@ const App = () => {
         openModal={openModal}
         closeModal={closeModal}
         likedPhotos={likedPhotos}
-        toggleFavorite={toggleFavorite} />
+        toggleFavorite={toggleFavorite} 
+        photoData={photoData}/>
 
-      {showModal && <PhotoDetailsModal  // if showModal is true, render PhotoDetailsModal with photoData at selected photo and the closer function
-          photoData={selectedPhoto}
+      {showModal && <PhotoDetailsModal
+          selectedPhotoData={selectedPhoto}
           closeModal={closeModal}
           likedPhotos={likedPhotos}
           toggleFavorite={toggleFavorite}

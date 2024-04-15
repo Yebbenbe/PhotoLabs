@@ -23,6 +23,8 @@ function reducer(state, action) {
       return { ...state, selectedPhoto: action.payload, showModal: true };
     case ACTIONS.CLOSE_MODAL:
       return { ...state, showModal: false };
+      case ACTIONS.SET_PHOTO_DATA: // case for setting photo data
+      return { ...state, photoData: action.payload };
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -60,6 +62,7 @@ const useApplicationData = () => {
       .then((response) => response.json())
       .then((data) => {
         // dispatch action
+        console.log('Photo data:', data);
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
       })
       .catch((error) => {
