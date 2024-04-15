@@ -14,9 +14,14 @@ const App = () => {
     selectedPhoto,
     openModal,
     closeModal,
-    photoData
+    photoData,
+    state,
+    topicData
   } = useApplicationData();
 
+  // The following logs procc only at the initial render. They do not seem to procc when the modal is supposed to be opening
+  //console.log("selectedPhoto in App.jsx:", selectedPhoto); 
+  //console.log("showModal state APP: ", showModal);
 
 
   return (
@@ -24,16 +29,17 @@ const App = () => {
       <HomeRoute
         openModal={openModal}
         closeModal={closeModal}
-        likedPhotos={likedPhotos}
-        toggleFavorite={toggleFavorite} 
-        photoData={photoData}/>
+        likedPhotos={state.likedPhotos}
+        toggleFavorite={toggleFavorite}
+        photoData={state.photoData}
+        topicData={topicData} />
 
-      {showModal && <PhotoDetailsModal
-          selectedPhotoData={selectedPhoto}
-          closeModal={closeModal}
-          likedPhotos={likedPhotos}
-          toggleFavorite={toggleFavorite}
-      />}
+      {state.showModal && <PhotoDetailsModal
+        selectedPhotoData={state.selectedPhoto}
+        closeModal={closeModal}
+        likedPhotos={state.likedPhotos}
+        toggleFavorite={toggleFavorite}
+      /> }
     </div>
   );
 };

@@ -14,6 +14,7 @@ const PhotoListItem = ({ data, isLiked, toggleFavorite, openModal }) => {
 
   const handleClick = (event) => {
     event.stopPropagation();
+    //console.log(data);
     if (data) {
       openModal(data);
     } else {
