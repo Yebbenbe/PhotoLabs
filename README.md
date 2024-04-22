@@ -2,6 +2,7 @@
 The PhotoLabs project for the Web Development React course programming.
 
 # Photolabs
+!["PhotoLabs Project"](https://github.com/Yebbenbe/PhotoLabs/blob/main/frontend/public/Screenshot%202024-04-21%20220915.png?raw=true)
 
 ## Setup
 
