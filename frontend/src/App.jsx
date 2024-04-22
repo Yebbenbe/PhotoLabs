@@ -15,8 +15,9 @@ const App = () => {
     openModal,
     closeModal,
     photoData,
+    topicData,
     state,
-    topicData
+    selectedTopic
   } = useApplicationData();
 
   // The following logs procc only at the initial render. They do not seem to procc when the modal is supposed to be opening
@@ -32,7 +33,8 @@ const App = () => {
         likedPhotos={state.likedPhotos}
         toggleFavorite={toggleFavorite}
         photoData={state.photoData}
-        topicData={topicData} />
+        topicData={topicData}
+        selectedTopic={selectedTopic} />
 
       {state.showModal && <PhotoDetailsModal
         selectedPhotoData={state.selectedPhoto}

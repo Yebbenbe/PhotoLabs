@@ -7,12 +7,12 @@ export const ACTIONS = {
   OPEN_MODAL: 'OPEN_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA'
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  GET_PHOTOS_BY_TOPIC: "GET_PHOTOS_BY_TOPIC",
 };
 
 // reducer function
 function reducer(state, action) {
-//  console.log(action.type, action.payload);
   switch (action.type) {
     case ACTIONS.TOGGLE_FAVORITE:
       const { photoId } = action.payload;
@@ -22,15 +22,20 @@ function reducer(state, action) {
         return { ...state, likedPhotos: [...state.likedPhotos, photoId] };
       }
     case ACTIONS.OPEN_MODAL:
-      console.log("Payload for OpenModal case:", action.payload);  //working
+      console.log("Payload for OpenModal case:", action.payload);
       return { ...state, selectedPhoto: action.payload, showModal: true };
-
     case ACTIONS.CLOSE_MODAL:
       return { ...state, showModal: false };
     case ACTIONS.SET_PHOTO_DATA:
       return { ...state, photoData: action.payload };
     case ACTIONS.SET_TOPIC_DATA:
       return { ...state, topicData: action.payload };
+
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return {
+        ...state,
+        photoData: action.payload,
+      }
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -46,6 +51,13 @@ const useApplicationData = () => {
     topicData: []
   };
 
+  // function to fetch photos by topic
+  const selectedTopic = (topicId) => {
+    fetch(`/api/topics/photos/${topicId}`)
+      .then((res) => res.json())
+      .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
+      .catch((error) => { console.error('Error:', error) });
+  };
   // use reducer with initial state
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -103,7 +115,8 @@ const useApplicationData = () => {
     closeModal,
     photoData: state.photoData,
     topicData: state.topicData,
-    state
+    state,
+    selectedTopic
   };
 };
 
